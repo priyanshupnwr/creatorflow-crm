@@ -1,16 +1,29 @@
-# React + Vite
+# CreatorFlow CRM
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern CRM platform for managing content creator outreach and partnerships.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React
+- Vite
+- React Router DOM
 
-## React Compiler
+## Project Goal
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+CreatorFlow is a CRM platform that helps users manage creator outreach pipelines, track collaboration statuses, maintain notes, and monitor follow-ups.
 
-## Expanding the ESLint configuration
+## Current Progress
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Phase 1
+- React Project Setup
+- React Router Installation
+- GitHub Repository Setup
+
+## Upcoming Features
+
+- Dashboard
+- Lead Management
+- Pipeline Board
+- Notes System
+- Authentication
+- MongoDB Integration
