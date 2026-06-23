@@ -1,4 +1,5 @@
 import leads from "../../data/leads";
+import LeadCard from "../../components/common/LeadCard";
 
 function Leads() {
   return (
@@ -6,11 +7,10 @@ function Leads() {
       <h1>Leads</h1>
 
       {leads.map((lead) => (
-        <div key={lead.id}>
-          <h3>{lead.name}</h3>
-          <p>{lead.company}</p>
-          <p>{lead.status}</p>
-        </div>
+        <LeadCard
+          key={lead.id}
+          lead={lead}
+        />
       ))}
     </div>
   );
