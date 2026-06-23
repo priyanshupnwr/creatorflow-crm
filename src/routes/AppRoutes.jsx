@@ -5,14 +5,18 @@ import Leads from "../pages/Leads/Leads";
 import Pipeline from "../pages/Pipeline/Pipeline";
 import Profile from "../pages/Profile/Profile";
 
+import MainLayout from "../layouts/MainLayout";
+
 function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/leads" element={<Leads />} />
-      <Route path="/pipeline" element={<Pipeline />} />
-      <Route path="/profile" element={<Profile />} />
-    </Routes>
+    <MainLayout>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/leads" element={<Leads />} />
+        <Route path="/pipeline" element={<Pipeline />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </MainLayout>
   );
 }
 

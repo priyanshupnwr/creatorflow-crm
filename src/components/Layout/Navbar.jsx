@@ -1,5 +1,9 @@
 function Navbar() {
-  return <div>Navbar</div>;
+  return (
+    <div>
+      <h2>CreatorFlow CRM</h2>
+    </div>
+  );
 }
 
 export default Navbar;
