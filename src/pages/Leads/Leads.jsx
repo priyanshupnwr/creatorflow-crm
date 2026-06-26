@@ -43,8 +43,31 @@ function Leads() {
   }
 
   function updateLead() {
-    alert("Update feature coming...");
+  if (!name || !company || !status) {
+    alert("Please fill all fields");
+    return;
   }
+
+  const updatedLeads = leads.map((lead) => {
+    if (lead.id === editingLead.id) {
+      return {
+        ...lead,
+        name,
+        company,
+        status,
+      };
+    }
+
+    return lead;
+  });
+
+  setLeads(updatedLeads);
+
+  setEditingLead(null);
+  setName("");
+  setCompany("");
+  setStatus("");
+}
 
   return (
     <div>
