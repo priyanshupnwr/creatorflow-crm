@@ -9,38 +9,38 @@ function Leads() {
   const [status, setStatus] = useState("");
   const [editingLead, setEditingLead] = useState(null);
 
-  function addLead() {
-    if (!name || !company || !status) {
-      alert("Please fill all fields");
-      return;
-    }
-
-    const newLead = {
-      id: Date.now(),
-      name,
-      company,
-      status,
-    };
-
-    setLeads([...leads, newLead]);
-
-    setName("");
-    setCompany("");
-    setStatus("");
+ function addLead() {
+  if (!name || !company || !status) {
+    alert("Please fill all fields");
+    return;
   }
 
-  function deleteLead(id) {
-    const updatedLeads = leads.filter((lead) => lead.id !== id);
-    setLeads(updatedLeads);
+  const leadExists = leads.some(
+    (lead) =>
+      lead.name.toLowerCase() === name.toLowerCase() &&
+      lead.company.toLowerCase() === company.toLowerCase()
+  );
+
+  if (leadExists) {
+    alert("Lead already exists!");
+    return;
   }
 
-  function editLead(lead) {
-    setEditingLead(lead);
+  const newLead = {
+    id: Date.now(),
+    name,
+    company,
+    status,
+  };
 
-    setName(lead.name);
-    setCompany(lead.company);
-    setStatus(lead.status);
-  }
+  setLeads([...leads, newLead]);
+
+  setName("");
+  setCompany("");
+  setStatus("");
+
+  alert("Lead added successfully!");
+}
 
   function updateLead() {
   if (!name || !company || !status) {
@@ -67,6 +67,27 @@ function Leads() {
   setName("");
   setCompany("");
   setStatus("");
+
+  alert("Lead updated successfully!");
+}
+function deleteLead(id) {
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this lead?"
+  );
+
+  if (!confirmDelete) return;
+
+  const updatedLeads = leads.filter((lead) => lead.id !== id);
+
+  setLeads(updatedLeads);
+}
+
+function editLead(lead) {
+  setEditingLead(lead);
+
+  setName(lead.name);
+  setCompany(lead.company);
+  setStatus(lead.status);
 }
 
   return (
