@@ -7,12 +7,14 @@ function Leads() {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [status, setStatus] = useState("");
+  const [editingLead, setEditingLead] = useState(null);
 
   function addLead() {
     if (!name || !company || !status) {
-    alert("Please fill all fields");
-    return;
-  }
+      alert("Please fill all fields");
+      return;
+    }
+
     const newLead = {
       id: Date.now(),
       name,
@@ -21,18 +23,29 @@ function Leads() {
     };
 
     setLeads([...leads, newLead]);
+
     setName("");
     setCompany("");
     setStatus("");
   }
 
   function deleteLead(id) {
-  const updatedLeads = leads.filter((lead) => {
-    return lead.id !== id;
-  });
+    const updatedLeads = leads.filter((lead) => lead.id !== id);
+    setLeads(updatedLeads);
+  }
 
-  setLeads(updatedLeads);
-}
+  function editLead(lead) {
+    setEditingLead(lead);
+
+    setName(lead.name);
+    setCompany(lead.company);
+    setStatus(lead.status);
+  }
+
+  function updateLead() {
+    alert("Update feature coming...");
+  }
+
   return (
     <div>
       <h1>Leads</h1>
@@ -51,7 +64,7 @@ function Leads() {
           value={company}
           onChange={(e) => setCompany(e.target.value)}
         />
-        
+
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
@@ -63,8 +76,10 @@ function Leads() {
           <option value="Converted">Converted</option>
         </select>
 
-        <button onClick={addLead}>
-          Add Lead
+        <button
+          onClick={editingLead ? updateLead : addLead}
+        >
+          {editingLead ? "Update Lead" : "Add Lead"}
         </button>
       </div>
 
@@ -73,6 +88,7 @@ function Leads() {
           key={lead.id}
           lead={lead}
           onDelete={deleteLead}
+          onEdit={editLead}
         />
       ))}
     </div>
