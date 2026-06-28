@@ -1,17 +1,15 @@
-import "./MainLayout.css";
-
-import Navbar from "../components/Layout/Navbar";
-import Sidebar from "../components/Layout/Sidebar";
+import Navbar from "../components/layout/Navbar";
+import Sidebar from "../components/layout/Sidebar";
 
 function MainLayout({ children }) {
   return (
-    <div className="layout">
+    <div className="min-h-screen bg-gray-100">
       <Navbar />
 
-      <div className="layout-body">
+      <div className="flex">
         <Sidebar />
 
-        <main className="content">
+        <main className="flex-1 p-8">
           {children}
         </main>
       </div>
