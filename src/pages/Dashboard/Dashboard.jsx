@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import { LeadContext } from "../../context/LeadContext";
 import StatCard from "../../components/common/StatCard";
 
 function Dashboard() {
+  const { leads } = useContext(LeadContext);
   return (
     <div className="max-w-7xl mx-auto">
       <div className="mb-8">
@@ -16,25 +19,25 @@ function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
         <StatCard
           title="Total Leads"
-          value={24}
+          value={leads.length}
           color="text-blue-600"
         />
 
         <StatCard
           title="New Leads"
-          value={8}
+          value={leads.filter((lead) => lead.status === "New").length}
           color="text-green-600"
         />
 
         <StatCard
           title="Interested"
-          value={6}
+          value={leads.filter((lead) => lead.status === "Interested").length}
           color="text-yellow-500"
         />
 
         <StatCard
           title="Converted"
-          value={10}
+          value={leads.filter((lead) => lead.status === "Converted").length}
           color="text-purple-600"
         />
       </div>

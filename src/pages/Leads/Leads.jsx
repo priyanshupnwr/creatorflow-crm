@@ -1,9 +1,9 @@
-import { useState } from "react";
-import leadsData from "../../data/leads";
+import { useContext, useState } from "react";
+import { LeadContext } from "../../context/LeadContext";
 import LeadCard from "../../components/common/LeadCard";
 
 function Leads() {
-  const [leads, setLeads] = useState(leadsData);
+  const { leads, setLeads } = useContext(LeadContext);
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [status, setStatus] = useState("");
