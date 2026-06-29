@@ -3,9 +3,21 @@ import { LeadContext } from "../../context/LeadContext";
 import PipelineColumn from "../../components/pipeline/PipelineColumn";
 
 function Pipeline() {
-  const { leads } = useContext(LeadContext);
+  const { leads, loading } = useContext(LeadContext);
 
-  const newLeads = leads.filter((lead) => lead.status === "New");
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-[70vh]">
+        <h2 className="text-2xl font-semibold">
+          Loading Pipeline...
+        </h2>
+      </div>
+    );
+  }
+
+  const newLeads = leads.filter(
+    (lead) => lead.status === "New"
+  );
 
   const contactedLeads = leads.filter(
     (lead) => lead.status === "Contacted"
