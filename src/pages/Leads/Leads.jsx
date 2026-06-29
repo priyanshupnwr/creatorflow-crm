@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { LeadContext } from "../../context/LeadContext";
 import LeadCard from "../../components/common/LeadCard";
+import toast from "react-hot-toast";
 
 function Leads() {
   const { leads, setLeads } = useContext(LeadContext);
@@ -14,7 +15,7 @@ function Leads() {
 
   function addLead() {
     if (!name || !company || !status) {
-      alert("Please fill all fields");
+      toast.error("Please fill all fields");
       return;
     }
 
@@ -25,7 +26,7 @@ function Leads() {
     );
 
     if (leadExists) {
-      alert("Lead already exists!");
+      toast.error("Lead already exists");
       return;
     }
 
@@ -42,12 +43,12 @@ function Leads() {
     setCompany("");
     setStatus("");
 
-    alert("Lead added successfully!");
+    toast.success("Lead added successfully");
   }
 
   function updateLead() {
     if (!name || !company || !status) {
-      alert("Please fill all fields");
+      toast.error("Please fill all fields");
       return;
     }
 
@@ -71,7 +72,7 @@ function Leads() {
     setCompany("");
     setStatus("");
 
-    alert("Lead updated successfully!");
+    toast.success("Lead updated successfully");
   }
 
   function deleteLead(id) {
