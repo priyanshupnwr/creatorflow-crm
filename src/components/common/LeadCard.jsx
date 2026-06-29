@@ -15,7 +15,9 @@ function LeadCard({ lead, onDelete, onEdit }) {
           <p className="text-gray-500">{lead.company}</p>
 
           <span
-            className={`inline-block mt-3 px-3 py-1 rounded-full text-sm font-medium ${statusColors[lead.status]}`}
+            className={`inline-block mt-3 px-3 py-1 rounded-full text-sm font-medium ${
+              statusColors[lead.status]
+            }`}
           >
             {lead.status}
           </span>
@@ -30,7 +32,7 @@ function LeadCard({ lead, onDelete, onEdit }) {
           </button>
 
           <button
-            onClick={() => onDelete(lead.id)}
+            onClick={() => onDelete(lead._id)}
             className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg"
           >
             Delete

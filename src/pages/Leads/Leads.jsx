@@ -4,7 +4,14 @@ import LeadCard from "../../components/common/LeadCard";
 import toast from "react-hot-toast";
 
 function Leads() {
-  const { leads, setLeads } = useContext(LeadContext);
+  const {
+    leads,
+    loading,
+    addLead,
+    editLead,
+    removeLead,
+  } = useContext(LeadContext);
+
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [status, setStatus] = useState("");
@@ -13,7 +20,7 @@ function Leads() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
 
-  function addLead() {
+  async function handleAddLead() {
     if (!name || !company || !status) {
       toast.error("Please fill all fields");
       return;
@@ -30,62 +37,65 @@ function Leads() {
       return;
     }
 
-    const newLead = {
-      id: Date.now(),
-      name,
-      company,
-      status,
-    };
+    try {
+      await addLead({
+        name,
+        company,
+        status,
+      });
 
-    setLeads([...leads, newLead]);
+      setName("");
+      setCompany("");
+      setStatus("");
 
-    setName("");
-    setCompany("");
-    setStatus("");
-
-    toast.success("Lead added successfully");
+      toast.success("Lead added successfully");
+    } catch (error) {
+      toast.error("Failed to add lead");
+    }
   }
 
-  function updateLead() {
+  async function handleUpdateLead() {
     if (!name || !company || !status) {
       toast.error("Please fill all fields");
       return;
     }
 
-    const updatedLeads = leads.map((lead) => {
-      if (lead.id === editingLead.id) {
-        return {
-          ...lead,
-          name,
-          company,
-          status,
-        };
-      }
+    try {
+      await editLead(editingLead._id, {
+        name,
+        company,
+        status,
+      });
 
-      return lead;
-    });
+      setEditingLead(null);
 
-    setLeads(updatedLeads);
+      setName("");
+      setCompany("");
+      setStatus("");
 
-    setEditingLead(null);
-    setName("");
-    setCompany("");
-    setStatus("");
-
-    toast.success("Lead updated successfully");
+      toast.success("Lead updated successfully");
+    } catch (error) {
+      toast.error("Failed to update lead");
+    }
   }
 
-  function deleteLead(id) {
+  async function handleDeleteLead(id) {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this lead?"
     );
 
     if (!confirmDelete) return;
 
-    setLeads(leads.filter((lead) => lead.id !== id));
+    try {
+      await removeLead(id);
+
+      toast.success("Lead deleted successfully");
+    } catch (error) {
+      toast.error("Failed to delete lead");
+    }
   }
 
-  function editLead(lead) {
+  function handleEditLead(lead) {
     setEditingLead(lead);
 
     setName(lead.name);
@@ -93,7 +103,6 @@ function Leads() {
     setStatus(lead.status);
   }
 
-  // Search + Filter
   const filteredLeads = leads.filter((lead) => {
     const matchesSearch =
       lead.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -104,6 +113,14 @@ function Leads() {
 
     return matchesSearch && matchesStatus;
   });
+
+  if (loading) {
+    return (
+      <div className="text-center mt-20 text-xl font-semibold">
+        Loading leads...
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -164,7 +181,11 @@ function Leads() {
           </select>
 
           <button
-            onClick={editingLead ? updateLead : addLead}
+            onClick={
+              editingLead
+                ? handleUpdateLead
+                : handleAddLead
+            }
             className={`rounded-lg text-white font-medium px-4 py-3 transition ${
               editingLead
                 ? "bg-yellow-500 hover:bg-yellow-600"
@@ -181,10 +202,10 @@ function Leads() {
         {filteredLeads.length > 0 ? (
           filteredLeads.map((lead) => (
             <LeadCard
-              key={lead.id}
+              key={lead._id}
               lead={lead}
-              onDelete={deleteLead}
-              onEdit={editLead}
+              onDelete={handleDeleteLead}
+              onEdit={handleEditLead}
             />
           ))
         ) : (
