@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { LeadContext } from "../../context/LeadContext";
 import StatCard from "../../components/common/StatCard";
+import LeadChart from "../../components/dashboard/LeadChart";
 
 function Dashboard() {
   const { leads } = useContext(LeadContext);
@@ -90,7 +91,11 @@ const convertedLeads = leads.filter(
   )}
 </ul>
       </div>
+      <div className="mt-8">
+  <LeadChart leads={leads} />
+</div>
     </div>
+    
   );
 }
 
