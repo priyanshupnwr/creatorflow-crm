@@ -233,7 +233,7 @@ While building this project, I gained practical experience with:
 
 GitHub: [click me !](https://github.com/priyanshupnwr)
 
-LinkedIn: [\[hyourprofilettps://linkedin.com/in/\](https://www.linkedin.com/in/priyanshu-panwar-9731b9288/)](https://www.linkedin.com/in/priyanshu-panwar-9731b9288/)
+LinkedIn: [click me !](https://www.linkedin.com/in/priyanshu-panwar-9731b9288/)
 
 ---
 
