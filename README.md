@@ -6,15 +6,13 @@ A modern full-stack CRM (Customer Relationship Management) application built usi
 
 ## 📸 Screenshots
 
-> Add screenshots after deployment.
-
 | Dashboard | Leads |
 |-----------|--------|
-| Screenshot | Screenshot |
+| d:\Screenshots\Screenshot 2026-07-02 152156.png d:\Screenshots\Screenshot 2026-07-02 152146.png | d:\Screenshots\Screenshot 2026-07-02 152205.png |
 
 | Pipeline | Profile |
 |-----------|----------|
-| Screenshot | Screenshot |
+| d:\Screenshots\Screenshot 2026-07-02 152215.png | d:\Screenshots\Screenshot 2026-07-02 152223.png |
 
 ---
 
