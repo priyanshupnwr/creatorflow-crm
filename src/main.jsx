@@ -1,21 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+
 import App from "./App";
 import "./index.css";
+
+import AuthProvider from "./context/AuthContext";
 import LeadProvider from "./context/LeadContext";
-import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <LeadProvider>
-        <Toaster
-  position="top-right"
-  reverseOrder={false}
-/>
-        <App />
-      </LeadProvider>
+      <AuthProvider>
+        <LeadProvider>
+          <Toaster
+            position="top-right"
+            reverseOrder={false}
+          />
+          <App />
+        </LeadProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

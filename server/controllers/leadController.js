@@ -1,8 +1,13 @@
 import Lead from "../models/Lead.js";
 
+// =====================================
+// Get All Leads (Only Logged-in User)
+// =====================================
 export const getLeads = async (req, res) => {
   try {
-    const leads = await Lead.find().sort({ createdAt: -1 });
+    const leads = await Lead.find({
+      user: req.user._id,
+    }).sort({ createdAt: -1 });
 
     res.status(200).json(leads);
   } catch (error) {
@@ -13,17 +18,19 @@ export const getLeads = async (req, res) => {
   }
 };
 
+// =====================================
+// Create Lead
+// =====================================
 export const createLead = async (req, res) => {
   try {
     const { name, company, status } = req.body;
 
-    const newLead = new Lead({
+    const newLead = await Lead.create({
+      user: req.user._id,
       name,
       company,
       status,
     });
-
-    await newLead.save();
 
     res.status(201).json({
       message: "Lead created successfully",
@@ -37,22 +44,31 @@ export const createLead = async (req, res) => {
   }
 };
 
+// =====================================
+// Update Lead
+// =====================================
 export const updateLead = async (req, res) => {
   try {
-    const updatedLead = await Lead.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    const lead = await Lead.findById(req.params.id);
 
-    if (!updatedLead) {
+    if (!lead) {
       return res.status(404).json({
         message: "Lead not found",
       });
     }
+
+    // Ownership Check
+    if (lead.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({
+        message: "Not authorized",
+      });
+    }
+
+    lead.name = req.body.name || lead.name;
+    lead.company = req.body.company || lead.company;
+    lead.status = req.body.status || lead.status;
+
+    const updatedLead = await lead.save();
 
     res.status(200).json({
       message: "Lead updated successfully",
@@ -66,15 +82,27 @@ export const updateLead = async (req, res) => {
   }
 };
 
+// =====================================
+// Delete Lead
+// =====================================
 export const deleteLead = async (req, res) => {
   try {
-    const deletedLead = await Lead.findByIdAndDelete(req.params.id);
+    const lead = await Lead.findById(req.params.id);
 
-    if (!deletedLead) {
+    if (!lead) {
       return res.status(404).json({
         message: "Lead not found",
       });
     }
+
+    // Ownership Check
+    if (lead.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({
+        message: "Not authorized",
+      });
+    }
+
+    await lead.deleteOne();
 
     res.status(200).json({
       message: "Lead deleted successfully",

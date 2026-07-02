@@ -7,14 +7,16 @@ import {
   deleteLead,
 } from "../controllers/leadController.js";
 
+import protect from "../middleware/authMiddleware.js";
+
 const router = express.Router();
 
-router.get("/", getLeads);
+router.get("/", protect, getLeads);
 
-router.post("/", createLead);
+router.post("/", protect, createLead);
 
-router.put("/:id", updateLead);
+router.put("/:id", protect, updateLead);
 
-router.delete("/:id", deleteLead);
+router.delete("/:id", protect, deleteLead);
 
 export default router;
