@@ -146,7 +146,7 @@ CreatorFlow CRM
 ### Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/creatorflow-crm.git
+git clone [url](https://github.com/priyanshupnwr/creatorflow-crm.git)
 ```
 
 ### Go inside project
