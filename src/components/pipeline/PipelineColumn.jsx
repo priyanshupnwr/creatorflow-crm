@@ -10,7 +10,7 @@ function PipelineColumn({ title, leads }) {
       <div className="space-y-3">
         {leads.map((lead) => (
           <LeadCardMini
-            key={lead.id}
+            key={lead._id}
             lead={lead}
           />
         ))}
