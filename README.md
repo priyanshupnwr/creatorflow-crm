@@ -3,17 +3,35 @@
 A modern full-stack CRM (Customer Relationship Management) application built using the MERN Stack. CreatorFlow CRM helps users manage leads efficiently through authentication, lead tracking, analytics, and a visual sales pipeline.
 
 ---
+# 📸 Screenshots
 
-## 📸 Screenshots
+## Login
 
-| Dashboard | Leads |
-|-----------|--------|
-| d:\Screenshots\Screenshot 2026-07-02 152156.png d:\Screenshots\Screenshot 2026-07-02 152146.png | d:\Screenshots\Screenshot 2026-07-02 152205.png |
+![Login](./screenshots/Login.png)
 
-| Pipeline | Profile |
-|-----------|----------|
-| d:\Screenshots\Screenshot 2026-07-02 152215.png | d:\Screenshots\Screenshot 2026-07-02 152223.png |
+---
 
+## Dashboard
+
+![Dashboard](./screenshots/Dashboard1.png)![Dashboard](./screenshots/Dashboard2.png)
+
+---
+
+## Leads
+
+![Leads](./screenshots/Leads.png)
+
+---
+
+## Pipeline
+
+![Pipeline](./screenshots/Pipeline.png)
+
+---
+
+## Profile
+
+![Profile](./screenshots/Profile.png)
 ---
 
 ## ✨ Features
